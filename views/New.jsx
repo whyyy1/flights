@@ -1,12 +1,10 @@
 import React from 'react'
 
-function New() {
+function New({dateTime}) {
     let airLines = ['American', 'Southwest', 'United']
-    const currentDate = new Date();
-    const defaultDate = new Date(currentDate);
-    defaultDate.setFullYear(currentDate.getFullYear() + 1);
-    defaultDate.toISOString().split('T')[0]
-    console.log(defaultDate)
+
+    
+   
 
     return (
         <div>
@@ -15,10 +13,10 @@ function New() {
 
                 <label htmlFor='airline'>Airline:</label>
                 <br />
-                <select id='airline' name='airline' value={airline}>
+                <select id='airline' name='airline'>
                     {airLines.map((airline) => {
                         console.log(airline)
-                        return (<option  required>{airline}</option>)
+                        return (<option  required  value={airline}>{airline}</option>)
                     })}
                 </select>
 
@@ -27,7 +25,7 @@ function New() {
                 <input type='number' id='flightNo' name='flightNo' min={10} max={9999}></input><br /><br />
 
                 <label htmlFor='departs'>Departs</label><br />
-                <input type='datetime-local' id='departs' name='departs' value={defaultDate}></input><br /><br /><br />
+                <input type='datetime-local' id='departs' name='departs' defaultValue={dateTime}></input><br /><br /><br />
 
                 <button>Submit</button>
             </form>

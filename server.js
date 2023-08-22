@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }))
 const flightRoutes = require('./routes/Routes')
 app.use('/flights', flightRoutes)
 app.get('/',(req,res)=> {
-    res.send('Hey we made it ')
+    res.send('<a href="/flights">Hey we made it </a>')
 })
 
 

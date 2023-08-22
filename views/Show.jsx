@@ -2,15 +2,15 @@ import React from 'react'
 
 export default function Show({ flight }) {
     let { airline, flightNo, departs, _id } = flight
-    console.log(flight)
+    console.log(flight,'hey')
     return (
         <div>
             <h1>Show</h1>
-            <p>Airline: {airline}</p>
+            <p>Airline Departed: {flight.airlineDep}</p>
             <p>flightNo: {flightNo}</p>
-            <p>depart : {departs.toString()}</p><br />
+            <p>Depart Time: {flight.departDep.toString()}</p><br />
 
-            <form action={`/flights/${_id}?_method=DELETE`} method='POST'>
+            <form action={`/flights/${flight._id}?_method=DELETE`} method='POST'>
                 <button>Remove</button>
             </form>
             <a href='/flights'>back</a>

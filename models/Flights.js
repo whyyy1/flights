@@ -1,49 +1,53 @@
 const mongoose = require('mongoose')
-
 const Schema = mongoose.Schema
 
-//PARENT SCHMEA
-const flightSchema = new Schema({
-    airline: {
+// child schema
+const destinationSchema = new Schema({
+    airportArr: {
         type: String,
-        enum : ['American','Southwest','United'],
-        
+        enum:['AUS', 'DAL', 'LAX', 'SAN', 'SEA'],
+    },
+    departArr: {
+        type: Date,
+    }
+    
+})
+const flightSchema = new Schema({
+    airlineDep: {
+        type: String,
+        enum: {values:['American', 'Southwest', 'United'], message: '{VALUE} is not supported'},
         required: true
     },
-    airport: {
+    airportDep: {
         type: String,
-        enum : ['AUS', 'DAL', 'LAX', 'SAN' , 'SEA'],
-        default: 'SAN',
+        enum:['AUS', 'DAL', 'LAX', 'SAN', 'SEA'],
+        default: 'SAN'
     },
-
     flightNo: {
         type: Number,
         min: 10,
         max: 9999,
-        required: true
+        required: true,
     },
-    departs: {
+    departDep: {
         type: Date,
-        default: new Date().getTime()  ,
-        required: true
-    }, 
-    destinations: destinationSchema
-})
-
-//CHILD SCHEMA
-const destinationSchema  = new Schema({
-    airport: {
-        type: String,
-        enum : ['AUS', 'DAL', 'LAX', 'SAN' , 'SEA'],
-        
+        required: true,
+        default: ()=> Date()
     },
-    arrival: {
-        type: Date
+    
+    departArr: {
+        type: Date,
+        required: true,
+        default: ()=> Date()
     },
+    
+    destinations: {
+        type: Schema.Types.ObjectId,
+        destinationSchema,
+    }
 })
-
 
 // 1st argument is the collection, 2nd is the Schema (blueprint) 
-const Flights = mongoose.model('flights', flightSchema)
+const Flight = mongoose.model('flights', flightSchema)
 
-module.exports = Flights
+module.exports = Flight

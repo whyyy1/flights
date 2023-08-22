@@ -23,17 +23,26 @@ module.exports.index = async (req, res) => {
 //  GET /flights/new
 module.exports.new = (req, res) => {
     const newFlight = new Flight();
-    // Obtain the default date
-    const dt = newFlight.departs;
+    console.log(newFlight)
     
-    let dateTime = `${dt.getFullYear()}-${dt.getMonth().toString().padStart(2, '0')}-${dt.getDate().toString().padStart(2, '0')}T${dt.getHours().toString().padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}:${dt.getSeconds().toString().padStart(2, '0')}`
-    // Format the date for the value attribute of the input
+    const departTime = newFlight.departDep;
+    const arrivalTime = newFlight.departArr;
+    // console.log(newFlight.depart)
+    let dates = 
+    {
+        depart: `${departTime.getFullYear()}-${departTime.getMonth().toString().padStart(2, '0')}-${departTime.getDate().toString().padStart(2, '0')}T${departTime.getHours().toString().padStart(2, '0')}:${departTime.getMinutes().toString().padStart(2, '0')}:${departTime.getSeconds().toString().padStart(2, '0')}`,
+        arrival: `${arrivalTime.getFullYear()}-${arrivalTime.getMonth().toString().padStart(2, '0')}-${arrivalTime.getDate().toString().padStart(2, '0')}T${arrivalTime.getHours().toString().padStart(2, '0')}:${arrivalTime.getMinutes().toString().padStart(2, '0')}:${arrivalTime.getSeconds().toString().padStart(2, '0')}`
+    }
+    // dates.depart.toISOString().slice(0,19)
+    // dates.arrival.toISOString().slice(0,19)
+    console.log(dates)
+    // // Format the date for the value attribute of the input
 
     
-    const departsDate = dt.toISOString().slice(0,19)
     
     
-    res.render('New',{dateTime})
+    
+    res.render('New',{dates})
 }
 
 

@@ -4,12 +4,12 @@ import Flights from '../models/Flights';
 function Edit({flight}) {
     let airLines = ['American', 'Southwest', 'United']
     
-   
+    console.log(flight)
 
     return (
         <div>
             <h1>Edit</h1>
-            <form action={`/flights/${flight._id}?_method=PUT`} method='POST'>
+            {/* <form action={`/flights/${flight._id}?_method=PUT`} method='POST'>
 
                 <label htmlFor='airline'>Airline:</label>
                 <br />
@@ -28,7 +28,7 @@ function Edit({flight}) {
                 <input type='datetime-local' id='departs' name='departs' defaultValue={flight.departs.toISOString().slice(0,19)}></input><br /><br /><br />
 
                 <button>Update</button>
-            </form>
+            </form> */}
             <a href='/flights'>back</a>
         </div>
     )
